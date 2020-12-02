@@ -1,0 +1,104 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Fonts/Robot/RobotoSlab-Medium.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Sprites/Other/Space-Key.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Popup/Popup.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 26
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Spacebar_Animated"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../PopupBox/ContinueIndicator:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Popup" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.145098, 0.145098, 0.145098, 0.631373 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupBox" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -278.0
+margin_top = -97.0
+margin_right = 278.0
+margin_bottom = 103.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ContinueIndicator" type="Sprite" parent="PopupBox"]
+position = Vector2( 524.147, 214.255 )
+texture = ExtResource( 2 )
+
+[node name="PopupText" type="RichTextLabel" parent="PopupBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 59.0
+mouse_filter = 2
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Text goes here"
+text = "Text goes here"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupLabel" type="RichTextLabel" parent="PopupBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 87.0813
+margin_top = 3.37909
+margin_right = -87.9187
+margin_bottom = -153.621
+mouse_filter = 2
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Popup Label"
+text = "Popup Label"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tweens" type="Node" parent="."]
+
+[node name="T_Background" type="Tween" parent="Tweens"]
+
+[node name="T_PopupBox_Modulate" type="Tween" parent="Tweens"]
+
+[node name="T_PopupBox_Pos" type="Tween" parent="Tweens"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tweens"]
+anims/Spacebar_Animated = SubResource( 2 )
+[connection signal="ShowPopup" from="." to="." method="_on_Popup_ShowPopup"]
