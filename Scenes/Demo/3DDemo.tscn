@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scenes/Demo/MainMenu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Demo/3DDemo.tres" type="Environment" id=2]
+[ext_resource path="res://Scenes/Demo/3DDemo.gd" type="Script" id=3]
+
+[sub_resource type="QuadMesh" id=1]
+size = Vector2( 5, 5 )
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_vertex_lighting = true
+albedo_texture = SubResource( 2 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 2.57629, 2.56239, 1 )
+
+[sub_resource type="CapsuleMesh" id=8]
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0.0681818, 0.965909 )
+colors = PoolColorArray( 0.110457, 0.449767, 0.554453, 1, 0, 0.360696, 0.784922, 1 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "StartUp"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:transform")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.45 ),
+"transitions": PoolRealArray( -0.5, 2 ),
+"update": 0,
+"values": [ Transform( 0.225699, 0, 0.974197, 0, 1, 0, -0.974197, 0, 0.225699, -1.35681, 5.11591, 16.714 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.11591, 15.2524 ) ]
+}
+
+[node name="3DDemo" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.225699, 0, 0.974197, 0, 1, 0, -0.974197, 0, 0.225699, -1.35681, 5.11591, 16.714 )
+current = true
+fov = 90.0
+
+[node name="CSGMesh" type="CSGMesh" parent="."]
+transform = Transform( 2.08001, 0, 0, 0, 1.40116, 0, 0, 0, 1, 0.194632, 5.28546, 11.3818 )
+mesh = SubResource( 1 )
+material = SubResource( 3 )
+
+[node name="Area" type="Area" parent="CSGMesh"]
+
+[node name="CollisionShape" type="CollisionShape" parent="CSGMesh/Area"]
+shape = SubResource( 6 )
+
+[node name="CPUParticles" type="CPUParticles" parent="."]
+amount = 150
+lifetime = 30.0
+preprocess = 4.41
+explosiveness = 0.32
+randomness = 0.24
+mesh = SubResource( 8 )
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+flag_rotate_y = true
+direction = Vector3( 100, 50, 100 )
+spread = 131.79
+gravity = Vector3( 0, 0.2, 0 )
+initial_velocity = 0.5
+angular_velocity = 1.0
+radial_accel = 1.0
+tangential_accel = 1.0
+damping = 0.1
+scale_amount = 0.1
+color_ramp = SubResource( 5 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1024, 600 )
+transparent_bg = true
+usage = 0
+render_target_v_flip = true
+render_target_update_mode = 3
+
+[node name="MainMenu" parent="Viewport" instance=ExtResource( 1 )]
+margin_right = 4.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/StartUp = SubResource( 7 )
