@@ -17,12 +17,12 @@ flags_unshaded = true
 flags_vertex_lighting = true
 albedo_texture = SubResource( 2 )
 
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape" id=4]
 extents = Vector3( 2.57629, 2.56239, 1 )
 
-[sub_resource type="CapsuleMesh" id=8]
+[sub_resource type="CapsuleMesh" id=5]
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="Gradient" id=6]
 offsets = PoolRealArray( 0.0681818, 0.965909 )
 colors = PoolColorArray( 0.110457, 0.449767, 0.554453, 1, 0, 0.360696, 0.784922, 1 )
 
@@ -59,7 +59,7 @@ material = SubResource( 3 )
 [node name="Area" type="Area" parent="CSGMesh"]
 
 [node name="CollisionShape" type="CollisionShape" parent="CSGMesh/Area"]
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 
 [node name="CPUParticles" type="CPUParticles" parent="."]
 amount = 150
@@ -67,7 +67,7 @@ lifetime = 30.0
 preprocess = 4.41
 explosiveness = 0.32
 randomness = 0.24
-mesh = SubResource( 8 )
+mesh = SubResource( 5 )
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
 flag_rotate_y = true
@@ -80,7 +80,7 @@ radial_accel = 1.0
 tangential_accel = 1.0
 damping = 0.1
 scale_amount = 0.1
-color_ramp = SubResource( 5 )
+color_ramp = SubResource( 6 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1024, 600 )

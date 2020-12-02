@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
+[ext_resource path="res://Scenes/Demo/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Demo/1312248.svg" type="Texture" id=3]
 [ext_resource path="res://Sprites/Demo/2502180.svg" type="Texture" id=5]
 [ext_resource path="res://Sprites/Demo/563608.png" type="Texture" id=7]
@@ -18,6 +19,7 @@ Button/styles/normal = SubResource( 1 )
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -92,3 +94,4 @@ hint_tooltip = "Manage mods downloaded through the steam workshop."
 theme = SubResource( 2 )
 Button_Label_Text = "[right]Mods"
 Overlay_Image = ExtResource( 7 )
+[connection signal="button_down" from="DLCMenuButton" to="." method="_on_DLCMenuButton_button_down"]
