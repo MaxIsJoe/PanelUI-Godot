@@ -4,6 +4,7 @@ export(String) var PopupLabel_Text = "[center]Alert!"
 export(String, MULTILINE) var PopupText_Text = "[center]This message has not been set or nothing has been loaded yet."
 export(int, "Ease In Out", "Ease in", "Ease Out", "Ease Out In") var transation_ease
 export(int, "Cubic", "Elastic") var transation_type
+export(int, "Unknown Issue", "Network Issue", "Non Existent Value", "Wrong value") var ErrorType
 
 onready var PopupText = $PopupBox/PopupText
 onready var PopupLabel = $PopupBox/PopupLabel
@@ -12,7 +13,15 @@ var IsShown = false
 var TweenTrans
 var TweenEase
 
+var error_msg = {
+	unkown_issue = "[center]An unknown issue has occured.",
+	network_issue = "[center]A networking issue occured.\n please check your internet connection and try again.",
+	exist_issue = "[center]This object/variable does not exist.",
+	wrong_value_issue = "[center]The entered value appears to be wrong."
+}
+
 signal ShowPopup(text, label)
+signal ShowErrorPopup(error)
 
 func _ready():
 	match transation_type:
@@ -39,6 +48,8 @@ func _input(event):
 			HideSelf()
 		else:
 			return
+	if(Input.is_action_just_pressed("ui_cancel")):
+		emit_signal("ShowErrorPopup", 1)
 
 func ShowSelf(popuptext, popuplabel):
 	IsShown = true
@@ -64,3 +75,20 @@ func HideSelf():
 
 func _on_Popup_ShowPopup(text, label):
 	ShowSelf(text,label)
+
+
+func _on_Popup_ShowErrorPopup(error):
+	var error_text
+	var error_label = "[center]Error!"
+	match error:
+		0:
+			error_text = error_msg.unkown_issue
+			error_label = "[center]Warning![/center]"
+		1:
+			error_text = error_msg.network_issue
+		2:
+			error_text = error_msg.exist_issue
+		3:
+			error_text = error_msg.wrong_value_issue
+	if(error_text != null):
+		ShowSelf(error_text, error_label)

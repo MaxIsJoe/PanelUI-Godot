@@ -101,4 +101,5 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Tweens"]
 anims/Spacebar_Animated = SubResource( 2 )
+[connection signal="ShowErrorPopup" from="." to="." method="_on_Popup_ShowErrorPopup"]
 [connection signal="ShowPopup" from="." to="." method="_on_Popup_ShowPopup"]
