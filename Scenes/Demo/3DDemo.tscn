@@ -28,7 +28,7 @@ colors = PoolColorArray( 0.110457, 0.449767, 0.554453, 1, 0, 0.360696, 0.784922,
 
 [sub_resource type="Animation" id=7]
 resource_name = "StartUp"
-length = 0.5
+length = 1.5
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Camera:transform")
@@ -37,17 +37,31 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.45 ),
-"transitions": PoolRealArray( -0.5, 2 ),
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( -0.5, 0.435277 ),
 "update": 0,
 "values": [ Transform( 0.225699, 0, 0.974197, 0, 1, 0, -0.974197, 0, 0.225699, -1.35681, 5.11591, 16.714 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.11591, 15.2524 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.49 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "WelcomeNoftication"
+} ]
 }
 
 [node name="3DDemo" type="Spatial"]
 script = ExtResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.225699, 0, 0.974197, 0, 1, 0, -0.974197, 0, 0.225699, -1.35681, 5.11591, 16.714 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.11591, 15.2524 )
 current = true
 fov = 90.0
 

@@ -149,3 +149,5 @@ func find_further_distance_to(origin):
 	
 	return far_dist
 
+func WelcomeNoftication():
+	NotificationBox.emit_signal("Notify", "[center]Welcome Back!\n\nNew DLC has been released since you last logged in.\n\n Check it now in the DLC page.", 0,0)
